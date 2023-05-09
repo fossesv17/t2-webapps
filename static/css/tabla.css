@@ -1,0 +1,33 @@
+.table-container {
+    text-align: center;
+}
+
+table {
+    margin: auto;
+    border-collapse: collapse;
+    width: 90%;
+}
+
+th, td {
+    text-align: center;
+    padding: 5px;
+    border: 1px solid black;
+}
+
+th {
+    background-color: #f5af3f;
+}
+
+tbody tr {
+    background-color: #e2bd82;
+    height: auto;
+}
+
+tbody tr:hover {
+    background-color: #c2a576;
+    cursor: pointer;
+}
+
+td {
+    font-size: 18px;
+}

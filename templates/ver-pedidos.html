@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Pedidos</title>
+    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/tabla.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <a id="image-ref" href="inicio.html">
+                <img src="../assets/vegetables.png">
+            </a>
+            <ul>
+                <li><a href="agregar-donacion.html">Agregar Donacion</a></li>
+                <li><a href="agregar-pedido.html">Agregar Pedido</a></li>
+                <li><a href="ver-donaciones.html">Ver Donaciones</a></li>
+                <li><a href="ver-pedidos.html">Ver Pedidos</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        Comuna
+                    </th>
+                    <th>
+                        Tipo
+                    </th>
+                    <th>
+                        Descripción
+                    </th>
+                    <th>
+                        Cantidad
+                    </th>
+                    <th>
+                        Nombre solicitante
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="order-table">
+            </tbody>
+        </table>
+    </div>
+    <div class="btn-container">
+        <a href="inicio.html">
+            <button>
+                Volver al inicio
+            </button>
+        </a>
+    </div>
+    <script src="../js/tabla.js"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informacion Donacion</title>
+    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/info.css">
+    <link rel="stylesheet" href="../css/modal.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <a id="image-ref" href="inicio.html">
+                <img src="../assets/vegetables.png">
+            </a>
+            <ul>
+                <li><a href="agregar-donacion.html">Agregar Donacion</a></li>
+                <li><a href="agregar-pedido.html">Agregar Pedido</a></li>
+                <li><a href="ver-donaciones.html">Ver Donaciones</a></li>
+                <li><a href="ver-pedidos.html">Ver Pedidos</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="info-container">
+        <div id="img-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+            </div>
+        </div>
+        <div id="donation-info"></div>
+        <div id="donation-photo"></div>
+    </div>
+    <div class="btn-container">
+        <a href="ver-donaciones.html">
+            <button>
+                Volver a donaciones
+            </button>
+        </a>
+    </div>
+    <script src="../js/info.js"></script>
+    <script src="../js/modal.js"></script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Donacion</title>
+    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/modal.css">
+    <link rel="stylesheet" href="../css/formulario.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <a id="image-ref" href="inicio.html">
+                <img src="../assets/vegetables.png">
+            </a>
+            <ul>
+                <li><a href="agregar-donacion.html">Agregar Donacion</a></li>
+                <li><a href="agregar-pedido.html">Agregar Pedido</a></li>
+                <li><a href="ver-donaciones.html">Ver Donaciones</a></li>
+                <li><a href="ver-pedidos.html">Ver Pedidos</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div id="validation-modal" class="modal">
+            <div class="modal-content">
+                <div id="modal-validation-msgs"></div>
+                <div id="modal-btn-container">
+                    <button id="confirmation-btn">Si, confirmo</button>
+                    <button id="negation-btn">No, quiero volver al formulario</button>
+                </div>
+            </div>
+        </div>
+        <form id="donation-form" action="">
+            <div class="form-container">
+                <div id="region-input" class="form-group">
+                    <div class="label-input">
+                        <label for="region-select">Región</label>
+                        <select id="region-select" name="region" required onchange="populate_comunas(data)">
+                            <option value="" selected>Seleccione una region</option>
+                        </select>
+                    </div>
+                    <div class="label-input">
+                        <label for="comuna-select">Comuna</label>
+                        <select id="comuna-select" name="comuna" required>
+                            <option value="" selected>Seleccione una comuna</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="address-input" class="form-group">
+                    <div class="label-input">
+                        <label for="street-num-input">Calle</label>
+                        <input id="street-num-input" name="calle-numero" type="text" size="80" required>
+                    </div>
+                </div>
+                <div id="donation-type-input" class="form-group">
+                    <div class="label-input">
+                        <label for="donation-select">Tipo de donación</label>
+                        <select id="donation-select" name="tipo" required>
+                            <option value="" selected>Seleccione tipo de donación</option>
+                            <option value="fruta">Frutas</option>
+                            <option value="verdura">Verduras</option>
+                            <option value="otro">Otros</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="donation-info" class="form-group">
+                    <div class="label-input">
+                        <label for="quantity-input">Cantidad</label>
+                        <input id="quantity-input" name="cantidad" type="text" size="10" required>
+                    </div>
+                    <div class="label-input">
+                        <label for="date-input">Fecha de disponibilidad</label>
+                        <input id="date-input" name="fecha-disponibilidad" type="text" size="10" required>
+                    </div>
+                </div>
+                <div id="description" class="form-group">
+                    <div class="label-input">
+                        <label for="desc-input">Descripción</label>
+                        <input id="desc-input" name="descripcion" type="text" size="80">
+                    </div>
+                </div>
+                <div id="conditions" class="form-group">
+                    <div class="label-input">
+                        <label for="conds-input">Condiciones de retiro</label>
+                        <input id="conds-input" name="condiciones" type="text" size="80">
+                    </div>
+                </div>
+                <div id="photos" class="form-group">
+                    <div class="label-input">
+                        <span>
+                            Fotos (Añadir entre 1-3 imagenes)
+                        </span>
+                        <div id="photo-inputs">
+                            <input id="foto-1" name="foto-1" type="file" accept="image/*" onchange="photo_upload(this.id)" required>
+                            <input id="foto-2" name="foto-2" type="file" accept="image/*" onchange="photo_upload(this.id)" hidden>
+                            <input id="foto-3" name="foto-3" type="file" accept="image/*" hidden>
+                        </div>
+                    </div>
+                </div>
+                <div id="donor-name" class="form-group">
+                    <div class="label-input">
+                        <label for="name-input">Nombre donante</label>
+                        <input id="name-input" name="nombre" type="text" size="80" required>
+                    </div>
+                </div>
+                <div id="contact-info" class="form-group">
+                    <div class="label-input">
+                        <label for="email-input">Correo</label>
+                        <input id="email-input" name="email" type="email" size="30" required>
+                    </div>
+                    <div class="label-input">
+                        <label for="cel-num">Número Telefónico</label>
+                        <input id="cel-num" name="celular" type="text" size="15">
+                    </div>
+                </div>
+                <div id="submit-button" class="form-group">
+                    <button id="submit-donation">Agregar Donación</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="../js/formulario.js"></script>
+    <script src="../js/validacion.js"></script>
+</body>
+</html>

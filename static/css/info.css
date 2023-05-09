@@ -1,0 +1,78 @@
+.info-container {
+    display: flex;
+    background-color: #ddc8a6;
+    width: 90%;
+    height: 500px;
+    border-radius: 10px;
+    margin: auto;
+    justify-content: space-between;
+}
+
+#donation-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    padding-top: 2.5%;
+}
+
+#donation-info span {
+    font-size: 18px;
+}
+
+#donation-photo {
+    padding: 5px;
+    width: 100%;
+    height: 100%;
+}
+
+#donation-photo:hover {
+    cursor: pointer;
+}
+
+#donation-personal-info {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    width: 70%;
+    height: auto;
+}
+
+#donation-data {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    width: 70%;
+    height: auto;
+}
+
+#order-info {
+    display: flex;
+    flex-direction: column;
+    padding-top: 10%;
+    padding-left: 15%;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    align-items: flex-start;
+}
+
+#order-info span {
+    font-size: 24px;
+}
+
+#order-data {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 10%;
+    padding-right: 15%;
+    height: auto;
+    margin: 0;
+    align-items: flex-start;
+}
+
+#order-data span {
+    font-size: 24px;
+}

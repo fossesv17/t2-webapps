@@ -1,0 +1,44 @@
+.container {
+    margin: 0 auto;
+    width: 50%;
+    background-color: #ddc8a6;
+    padding: 2%;
+    border-radius: 10px;
+}
+
+#donation-form {
+    display: flex;
+    justify-content: center;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: rgba(63, 37, 5, 0.929);
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    padding: 2%;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: row;
+}
+
+.label-input {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+}
+
+#photo-inputs {
+    max-width: min-content;
+}
+
+#submit-button {
+    align-self: center;
+    height: 60px;
+    font-size: 24px;
+}
+
