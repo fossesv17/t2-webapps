@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nav.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+    {% block css %}
+    {% endblock %}
+</head>
+<body>
+    <header>
+        <nav>
+            <a id="image-ref" href="{{ url_for('home') }}">
+                <img src="{{ url_for('static', filename='svg/fruits&veggies.svg') }}">
+            </a>
+            <ul>
+                <li><a href="{{ url_for('add_donation') }}">Agregar Donacion</a></li>
+                <li><a href="{{ url_for('add_order') }}">Agregar Pedido</a></li>
+                <li><a href="{{ url_for('check_donations') }}">Ver Donaciones</a></li>
+                <li><a href="{{ url_for('check_orders') }}">Ver Pedidos</a></li>
+            </ul>
+        </nav>
+    </header>
+</body>
+<section class="main-container">
+    {% block content %}
+    {% endblock %}
+    {% block js %}
+    {% endblock %}
+</section>
+</html>
