@@ -1,0 +1,13 @@
+{
+    "get_donation_by_id" : "SELECT id, comuna_id, calle_numero, tipo, cantidad, fecha_disponibilidad, descripcion, condiciones_retirar, nombre, email, celular FROM donacion WHERE id=%s;",
+    "create_donation" : "INSERT INTO donacion (comuna_id, calle_numero, tipo, cantidad, fecha_disponibilidad, descripcion, condiciones_retirar, nombre, email, celular) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);",
+    "get_first_5_donations" : "SELECT id, comuna_id, calle_numero, tipo, cantidad, fecha_disponibilidad, descripcion, condiciones_retirar, nombre, email, celular FROM donacion ORDER BY id DESC LIMIT 0,5;",
+    "get_next_5_donations" : "SELECT id, comuna_id, calle_numero, tipo, cantidad, fecha_disponibilidad, descripcion, condiciones_retirar, nombre, email, celular FROM donacion ORDER BY id DESC LIMIT 5,5;",
+    "get_order_by_id" : "SELECT id, comuna_id, tipo, descripcion, cantidad, nombre_solicitante, email_solicitante, celular_solicitante FROM pedido WHERE id=%s;",
+    "create_order" : "INSERT INTO pedido (comuna_id, tipo, descripcion, cantidad, nombre_solicitante, email_solicitante, celular_solicitante) VALUES (%s, %s, %s, %s, %s, %s, %s);",
+    "get_first_5_orders" : "SELECT id, comuna_id, tipo, descripcion, cantidad, nombre_solicitante, email_solicitante, celular_solicitante FROM pedido ORDER BY id DESC LIMIT 0,5;",
+    "get_next_5_orders" : "SELECT id, comuna_id, tipo, descripcion, cantidad, nombre_solicitante, email_solicitante, celular_solicitante FROM pedido ORDER BY id DESC LIMIT 5,5;",
+    "create_donation_photo" : "INSERT INTO foto (ruta_archivo, nombre_archivo, donacion_id) VALUES (%s, %s, %s);",
+    "get_photo_by_id" : "SELECT id, ruta_archivo, nombre_archivo, donacion_id FROM foto WHERE id=%s;",
+    "get_photo_by_donation_id" : "SELECT id, ruta_archivo, nombre_archivo, donacion_id FROM foto WHERE donacion_id=%s;"
+}
