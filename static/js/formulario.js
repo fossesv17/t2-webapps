@@ -42,13 +42,9 @@ const photo_upload = (id) => {
 
 let data;
 
-const xhr = new XMLHttpRequest();
-xhr.open('GET', '../assets/region_comuna.json');
-xhr.responseType = 'json';
-xhr.send();
-xhr.onload = function() {
-    if (this.status === 200) {
-        data = this.response;
-        populate_regiones(data);
-    }
-};
+fetch('/regiones_comunas')
+    .then(response => response.json()) 
+    .then(regiones_comunas => {
+        data = regiones_comunas;
+        populate_regiones(regiones_comunas);
+    });

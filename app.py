@@ -1,4 +1,7 @@
-from flask import Flask, request, render_template, redirect, url_for, session
+from flask import Flask, request, render_template, redirect, url_for, jsonify
+from utils.regiones_comunas import REGIONES_COMUNAS
+import json
+from database import db
 
 UPLOAD_FOLDER = 'static/uploads'
 
@@ -10,9 +13,18 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def home():
     return render_template('inicio.html')
 
-@app.route('/agregar-donacion')
+@app.route('/regiones_comunas', methods=['GET'])
+def pass_data():
+    data = json.loads(REGIONES_COMUNAS)
+    return jsonify(data)
+
+@app.route('/agregar-donacion', methods=["GET", "POST"])
 def add_donation():
-    return render_template('agregar-donacion.html')
+    if request.method == "POST":
+        pass
+
+    elif request.method == "GET":
+        return render_template('agregar-donacion.html')
 
 @app.route('/agregar-pedido')
 def add_order():
