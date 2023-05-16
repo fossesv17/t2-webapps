@@ -43,7 +43,7 @@ const photo_upload = (id) => {
 let data;
 
 fetch('/regiones_comunas')
-    .then(response => response.json()) 
+    .then(response => response.json())
     .then(regiones_comunas => {
         data = regiones_comunas;
         populate_regiones(regiones_comunas);

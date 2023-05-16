@@ -1,12 +1,33 @@
+let err_count = 0;
+
 const validationModal = () => {
     const modal = document.getElementById("validation-modal");
     const closeModalBtn = document.getElementById('negation-btn')
+    const confBtn = document.getElementById('confirmation-btn');
 
     modal.style.display = 'block';
 
     closeModalBtn.addEventListener("click", () => {
         modal.style.display = "none";
     });
+
+    window.addEventListener("click", (event) => {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    });
+
+    confBtn.addEventListener("click", () => {
+        modal.style.display = "none";
+        successModal();
+    })
+}
+
+const successModal = () => {
+    const modal = document.getElementById("success-modal");
+
+
+    modal.style.display = 'block';
 
     window.addEventListener("click", (event) => {
         if (event.target === modal) {
@@ -38,16 +59,49 @@ const validate_donation = () => {
     let err_msgs = document.querySelectorAll('.error-msg');
     err_msgs.forEach( e => e.remove());
 
-    let valid = false;
+    err_count = 0;
 
-    valid = validate_region(region) && validate_comuna(comuna) && validate_address(address) && validate_donation_type(donation_type) && validate_quantity(quantity) && validate_date(date) && validate_files(files) && validate_personal_info(name, email, phoneNum);
-    console.log(valid);
-
+    validate_region(region);
+    validate_comuna(comuna);
+    validate_address(address);
+    validate_donation_type(donation_type);
+    validate_date(date);
+    validate_quantity(quantity);
+    validate_files(files);
+    validate_personal_info(name, email, phoneNum);
+    
+    if (err_count === 0) validationModal(); 
 }
 
 const validate_order = () => {
-    console.log('valid');
+    const region_select = document.getElementById('region-select');
+    const region = region_select.options[region_select.selectedIndex].value;
+    const comuna_select = document.getElementById('comuna-select');
+    const comuna = comuna_select.options[comuna_select.selectedIndex].value;
+    const order_type = document.getElementById('order-select');
+    const desc = document.getElementById('desc-input').value;
+    const quantity = document.getElementById('quantity-input').value;
+    const name = document.getElementById('name-input').value;
+    const email = document.getElementById('email-input').value;
+    const phoneNum = document.getElementById('cel-num').value;
+
+    let err_msgs = document.querySelectorAll('.error-msg');
+    err_msgs.forEach( e => e.remove());
+
+    err_count = 0;
+
+    validate_region(region);
+    validate_comuna(comuna);
+    validate_order_type(order_type);
+    validate_desc(desc);
+    validate_quantity(quantity);
+    validate_personal_info_no_cell(name, email);
+
+    if (err_count === 0) validationModal();
+
 }
+
+
 
 const validate_region = (region) => {
     const isValid = region && region.length >= 0;
@@ -61,8 +115,8 @@ const validate_region = (region) => {
         err_msg.style = 'font-size: 0.8rem;';
         region_select.style = 'border-color: red;'
         select_parent.appendChild(err_msg);
+        err_count += 1;
     }
-    return isValid;
 }
 
 const validate_comuna = (comuna) => {
@@ -77,8 +131,8 @@ const validate_comuna = (comuna) => {
         err_msg.style = 'font-size: 0.8rem'
         comuna_select.style = 'border-color: red;'
         select_parent.appendChild(err_msg);
+        err_count += 1;
     }
-    return isValid;
 }
 
 const validate_address = (addr) => {
@@ -95,6 +149,7 @@ const validate_address = (addr) => {
         err_msg.style = 'font-size: 0.8rem'
         address_input.style = 'border-color: red;'
         select_parent.appendChild(err_msg);
+        err_count += 1;
     }
     else if (!formatValid) {
         const select_parent = address_input.parentNode;
@@ -104,9 +159,8 @@ const validate_address = (addr) => {
         err_msg.style = 'font-size: 0.8rem'
         address_input.style = 'border-color: red;'
         select_parent.appendChild(err_msg);
+        err_count += 1;
     }
-
-    return lengthValid && formatValid;
 }
 
 const validate_donation_type = (type) => {
@@ -121,9 +175,40 @@ const validate_donation_type = (type) => {
         err_msg.style = 'font-size: 0.8rem'
         donation_type.style = 'border-color: red;'
         select_parent.appendChild(err_msg);
+        err_count += 1;
     }
+}
 
-    return isValid;
+const validate_order_type = (type) => {
+    const isValid = type && type.length >= 0;
+    const order_type = document.getElementById('order-select');
+    order_type.addEventListener('click', () => order_type.style = 'border-color: ;');
+    if (!isValid) {
+        const select_parent = order_type.parentNode;
+        const err_msg = document.createElement('span');
+        err_msg.className = 'error-msg';
+        err_msg.textContent = 'Seleccione un tipo de pedido';
+        err_msg.style = 'font-size: 0.8rem'
+        order_type.style = 'border-color: red;'
+        select_parent.appendChild(err_msg);
+        err_count += 1;
+    }
+}
+
+const validate_desc = (desc) => {
+    const isValid = desc && desc.length >= 0 && desc.length <= 250;
+    const desc_input = document.getElementById('desc-input');
+    desc_input.addEventListener('click', () => desc_input.style = 'border-color: ;');
+    if (!isValid) {
+        const select_parent = desc_input.parentNode;
+        const err_msg = document.createElement('span');
+        err_msg.className = 'error-msg';
+        err_msg.textContent = 'Ingrese una descripcion valida';
+        err_msg.style = 'font-size: 0.8rem'
+        desc_input.style = 'border-color: red;'
+        select_parent.appendChild(err_msg);
+        err_count += 1;
+    }
 }
 
 const validate_quantity = (quantity) => {
@@ -140,6 +225,7 @@ const validate_quantity = (quantity) => {
         err_msg.style = 'font-size: 0.8rem'
         quantity_in.style = 'border-color: red;'
         select_parent.appendChild(err_msg);
+        err_count += 1;
     }
 
     else if (!formatValid) {
@@ -150,9 +236,8 @@ const validate_quantity = (quantity) => {
         err_msg.style = 'font-size: 0.8rem'
         quantity.style = 'border-color: red;'
         select_parent.appendChild(err_msg);
+        err_count += 1;
     }
-
-    return lengthValid && formatValid;
 }
 
 const validate_date = (date) => {
@@ -172,9 +257,8 @@ const validate_date = (date) => {
         err_msg.style = 'font-size: 0.8rem'
         date_in.style = 'border-color: red;'
         select_parent.appendChild(err_msg);
+        err_count += 1;
     }
-
-    return formatValid && dateValid;
 }
 
 const validate_files = (files) => {
@@ -194,27 +278,82 @@ const validate_files = (files) => {
     photo_in.addEventListener('click', () => photo_in.style = 'border: ;');
 
     if (!files || !lengthValid) {
-        console.log('AWA');
         const err_msg = document.createElement('span');
         err_msg.className = 'error-msg';
         err_msg.textContent = 'Añada al menos una imagen';
         err_msg.style = 'font-size: 0.8rem'
         photo_in.style = 'border: 1px solid red'
         photo_in.appendChild(err_msg);
+        err_count += 1;
     }
 
     else if (!typeValid) {
-        console.log('OWO');
         const err_msg = document.createElement('span');
         err_msg.className = 'error-msg';
         err_msg.textContent = 'Solo se aceptan archivos de tipo imagen';
         err_msg.style = 'font-size: 0.8rem'
         photo_in.style = 'border: 1px solid red'
         photo_in.appendChild(err_msg);
+        err_count += 1;
+    }
+}
+
+const validate_personal_info_no_cell = (name, email) => {
+    const nameLengthValid = name.length >= 3 && name.length <= 80;
+
+    const mailRegex = /^[\w.]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+    const mailValid = mailRegex.test(email);
+
+    const name_in = document.getElementById('name-input');
+    const email_in = document.getElementById('email-input');
+
+    name_in.addEventListener('click', () => name_in.style = 'border-color: ;');
+    email_in.addEventListener('click', () => email_in.style = 'border-color: ;');
+
+    if (!name) {
+        const select_parent = name_in.parentNode;
+        const err_msg = document.createElement('span');
+        err_msg.className = 'error-msg';
+        err_msg.textContent = 'Ingrese un nombre';
+        err_msg.style = 'font-size: 0.8rem'
+        name_in.style = 'border-color: red;'
+        select_parent.appendChild(err_msg);
+        err_count += 1;
     }
 
-    return lengthValid && typeValid;
-}
+    else if (!nameLengthValid) {
+        const select_parent = name_in.parentNode;
+        const err_msg = document.createElement('span');
+        err_msg.className = 'error-msg';
+        err_msg.textContent = 'Nombre debe tener minimo 3 caracteres y maximo 80 caracteres';
+        err_msg.style = 'font-size: 0.8rem'
+        name_in.style = 'border-color: red;'
+        select_parent.appendChild(err_msg);
+        err_count += 1;
+    }
+
+    if (!email) {
+        const select_parent = email_in.parentNode;
+        const err_msg = document.createElement('span');
+        err_msg.className = 'error-msg';
+        err_msg.textContent = 'Ingrese un correo electronico';
+        err_msg.style = 'font-size: 0.8rem'
+        email_in.style = 'border-color: red;'
+        select_parent.appendChild(err_msg);
+        err_count += 1;
+    }
+
+    else if (!mailValid) {
+        const select_parent = email_in.parentNode;
+        const err_msg = document.createElement('span');
+        err_msg.className = 'error-msg';
+        err_msg.textContent = 'Ingrese un correo valido (eg: correo@gmail.com)';
+        err_msg.style = 'font-size: 0.8rem'
+        email_in.style = 'border-color: red;'
+        select_parent.appendChild(err_msg);
+        err_count += 1;
+    }
+} 
 
 const validate_personal_info = (name, email, number) => {
     const nameLengthValid = name.length >= 3 && name.length <= 80;
@@ -241,6 +380,7 @@ const validate_personal_info = (name, email, number) => {
         err_msg.style = 'font-size: 0.8rem'
         name_in.style = 'border-color: red;'
         select_parent.appendChild(err_msg);
+        err_count += 1;
     }
 
     else if (!nameLengthValid) {
@@ -251,6 +391,7 @@ const validate_personal_info = (name, email, number) => {
         err_msg.style = 'font-size: 0.8rem'
         name_in.style = 'border-color: red;'
         select_parent.appendChild(err_msg);
+        err_count += 1;
     }
 
     if (!email) {
@@ -261,6 +402,7 @@ const validate_personal_info = (name, email, number) => {
         err_msg.style = 'font-size: 0.8rem'
         email_in.style = 'border-color: red;'
         select_parent.appendChild(err_msg);
+        err_count += 1;
     }
 
     else if (!mailValid) {
@@ -271,6 +413,7 @@ const validate_personal_info = (name, email, number) => {
         err_msg.style = 'font-size: 0.8rem'
         email_in.style = 'border-color: red;'
         select_parent.appendChild(err_msg);
+        err_count += 1;
     }
 
     if (!number) {
@@ -281,6 +424,7 @@ const validate_personal_info = (name, email, number) => {
         err_msg.style = 'font-size: 0.8rem'
         cel_num.style = 'border-color: red;'
         select_parent.appendChild(err_msg);
+        err_count += 1;
     }
 
     else if (!numberValid) {
@@ -291,9 +435,8 @@ const validate_personal_info = (name, email, number) => {
         err_msg.style = 'font-size: 0.8rem'
         cel_num.style = 'border-color: red;'
         select_parent.appendChild(err_msg);
+        err_count += 1;
     }
-
-    return name && nameLengthValid && email && mailValid && number && numberValid;
 }
 
 const submit_donation = document.getElementById('submit-donation');
