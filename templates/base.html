@@ -29,11 +29,11 @@
             </ul>
         </nav>
     </header>
+    <section class="main-container">
+        {% block content %}
+        {% endblock %}
+        {% block js %}
+        {% endblock %}
+    </section>
 </body>
-<section class="main-container">
-    {% block content %}
-    {% endblock %}
-    {% block js %}
-    {% endblock %}
-</section>
 </html>

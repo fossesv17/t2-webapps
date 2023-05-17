@@ -11,12 +11,13 @@
             <div class="modal-content">
                 <div id="modal-validation-msgs"></div>
                 <div id="modal-btn-container">
+                    <h3>¿Confirma que desea agregar esta donacion?</h3>
                     <button id="confirmation-btn">Si, confirmo</button>
                     <button id="negation-btn">No, quiero volver al formulario</button>
                 </div>
             </div>
         </div>
-        <form id="donation-form" action="">
+        <form id="donation-form" action="{{ url_for('add_donation') }}" method="POST" enctype="multipart/form-data">
             <div class="form-container">
                 <div id="region-input" class="form-group">
                     <div class="label-input">

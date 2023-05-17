@@ -19,7 +19,7 @@ nav {
 
 #image-ref {
     width: 100px;
-    margin: 0 2.5% 0 1%
+    margin: 1% 2.5% 0 1%
 }
 
 #image-ref img {
@@ -48,4 +48,14 @@ nav a {
     display: flex;
     justify-content: center;
     margin: 1%
+}
+
+.farmer-img-container {
+    display: flex;
+    justify-content: center;
+}
+
+.farmer-img-container img {
+    border-radius: 10px;
+    margin: 1%;
 }

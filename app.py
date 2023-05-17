@@ -2,6 +2,7 @@ from flask import Flask, request, render_template, redirect, url_for, jsonify
 from utils.regiones_comunas import REGIONES_COMUNAS
 import json
 from database import db
+from utils.validation import validate_donation
 
 UPLOAD_FOLDER = 'static/uploads'
 
@@ -21,7 +22,30 @@ def pass_data():
 @app.route('/agregar-donacion', methods=["GET", "POST"])
 def add_donation():
     if request.method == "POST":
-        pass
+        region_id = request.form.get('region')
+        comuna_id = request.form.get('comuna')
+        calle_num = request.form.get('calle-numero')
+        tipo_donacion = request.form.get('tipo')
+        cantidad = request.form.get('cantidad')
+        fecha_disp = request.form.get('fecha-disponibilidad')
+        desc = request.form.get('descripcion')
+        condiciones = request.form.get('condiciones')
+        fotos = []
+        for i in range(1,4):
+            fotos.append(request.files.get('foto-'+str(i)))
+        donante = request.form.get('nombre')
+        email = request.form.get('email')
+        num = request.form.get('celular')
+
+        if validate_donation(region_id, comuna_id, calle_num, tipo_donacion, cantidad, fecha_disp, desc, condiciones, donante, email, num, fotos):
+            status, msg = db.create_donation(comuna_id, calle_num, tipo_donacion, cantidad, fecha_disp, desc, condiciones, donante, email, num)
+
+            if status:
+                return redirect(url_for('home'))
+        else:
+            print('error de campo')
+
+        return render_template('agregar-donacion.html')
 
     elif request.method == "GET":
         return render_template('agregar-donacion.html')

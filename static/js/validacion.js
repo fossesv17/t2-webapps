@@ -19,21 +19,9 @@ const validationModal = () => {
 
     confBtn.addEventListener("click", () => {
         modal.style.display = "none";
-        successModal();
+        form = document.getElementById("donation-form");
+        form.submit();
     })
-}
-
-const successModal = () => {
-    const modal = document.getElementById("success-modal");
-
-
-    modal.style.display = 'block';
-
-    window.addEventListener("click", (event) => {
-        if (event.target === modal) {
-            modal.style.display = "none";
-        }
-    });
 }
 
 const validate_donation = () => {
