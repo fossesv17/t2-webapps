@@ -54,8 +54,14 @@ def add_donation():
 def add_order():
     return render_template('agregar-pedido.html')
 
-@app.route('/ver-donaciones')
+@app.route('/ver-donaciones', methods=["GET"])
 def check_donations():
+    if request.method == "GET":
+        first_5_donations = db.get_first_5_donations()
+        next_5_donations = db.get_next_5_donations()
+        print(first_5_donations)
+        return render_template('ver-donaciones.html', first_donations=first_5_donations, next_donations=next_5_donations)
+
     return render_template('ver-donaciones.html')
 
 @app.route('/ver-pedidos')
