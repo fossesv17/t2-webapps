@@ -126,21 +126,6 @@ def validate_donation(region, comuna, address, donation_type,
         if photo.filename != '':
             valid_photos = valid_photos and validate_photo(photo)
 
-    print(
-        f"region {validate_region(region)}",
-        f"comuna {validate_comuna(comuna)}",
-        f"calle {validate_address(address)}",
-        f"tipo {validate_type(donation_type)}",
-        f"cantidad {validate_quantity(quantity)}",
-        f"fecha {validate_date(avail_date)}",
-        f"desc {validate_donation_desc(desc)}",
-        f"conds {validate_conditions(conditions)}",
-        f"nombre {validate_name(donor_name)}",
-        f"mail {validate_email(email)}",
-        f"numero {validate_cellnum(cellnum)}",
-        f"fotos {valid_photos}",
-    )
-
     return (
         validate_region(region)
         and validate_comuna(comuna)
@@ -154,4 +139,16 @@ def validate_donation(region, comuna, address, donation_type,
         and validate_email(email)
         and validate_cellnum(cellnum)
         and valid_photos
+    )
+
+def validate_order(region, comuna, order_type, quantity, desc, name, email, cellnum):
+    return (
+        validate_region(region)
+        and validate_comuna(comuna)
+        and validate_type(order_type)
+        and validate_quantity(quantity)
+        and validate_order_desc(desc)
+        and validate_name(name)
+        and validate_email(email)
+        and validate_cellnum(cellnum)
     )

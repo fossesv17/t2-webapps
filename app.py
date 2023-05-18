@@ -2,7 +2,7 @@ from flask import Flask, request, render_template, redirect, url_for, jsonify
 from utils.regiones_comunas import REGIONES_COMUNAS
 import json
 from database import db
-from utils.validation import validate_donation
+from utils.validation import validate_donation, validate_order
 
 UPLOAD_FOLDER = 'static/uploads'
 
@@ -50,22 +50,46 @@ def add_donation():
     elif request.method == "GET":
         return render_template('agregar-donacion.html')
 
-@app.route('/agregar-pedido')
+@app.route('/agregar-pedido', methods=["GET", "POST"])
 def add_order():
-    return render_template('agregar-pedido.html')
+    if request.method == "POST":
+        region_id = request.form.get('region')
+        comuna_id = request.form.get('comuna')
+        tipo_pedido = request.form.get('tipo')
+        desc = request.form.get('descripcion')
+        cantidad = request.form.get('cantidad')
+        nombre = request.form.get('nombre')
+        email = request.form.get('email')
+        num = request.form.get('celular')
+        if validate_order(region_id, comuna_id, tipo_pedido, cantidad, desc, nombre, email, num):
+            status, msg = db.create_order(comuna_id, tipo_pedido, desc, cantidad, nombre, email, num)
+
+            if status:
+                return redirect(url_for('home'))
+        else:
+            print('error de campo')
+
+        return render_template('agregar-pedido.html')
+
+    elif request.method == "GET":
+        return render_template('agregar-pedido.html')
 
 @app.route('/ver-donaciones', methods=["GET"])
 def check_donations():
     if request.method == "GET":
         first_5_donations = db.get_first_5_donations()
         next_5_donations = db.get_next_5_donations()
-        print(first_5_donations)
         return render_template('ver-donaciones.html', first_donations=first_5_donations, next_donations=next_5_donations)
 
     return render_template('ver-donaciones.html')
 
-@app.route('/ver-pedidos')
+@app.route('/ver-pedidos', methods=["GET"])
 def check_orders():
+    if request.method == "GET":
+        first_5_orders = db.get_first_5_orders()
+        next_5_orders = db.get_next_5_orders()
+        return render_template('ver-donaciones.html', first_orders=first_5_orders, next_orders=next_5_orders)
+
     return render_template('ver-pedidos.html')
 
 @app.route('/informacion-donacion')
