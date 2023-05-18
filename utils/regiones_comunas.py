@@ -68,3 +68,46 @@ REGIONES_COMUNAS = '''
     ]
 }
 '''
+
+DONACIONES_PEDIDOS = '''
+{
+    "donaciones" : [
+        {
+            "direccion" : {"comuna" : {"id" : 10303, "nombre" : "Pozo Almonte"}, "calle" : "Pasaje Pancito 123"},
+            "tipo" : "fruta",
+            "cantidad" : 2,
+            "fecha" : "2023-02-15",
+            "descripcion" : "Hermanito mio ke paso",
+            "condiciones" : "no se loko toy entero loco",
+            "persona" : {"nombre" : "Juanita Perez", "correo" : "jperez@gmail.com", "numero" : "56912345678"},
+            "foto" : "../assets/img/pera.jpg"
+        },
+        {
+            "direccion" : {"comuna" : {"id": 80101, "nombre": "Cobquecura"}, "calle" : "Avenida KiePeroComo 420"},
+            "tipo" : "verdura",
+            "cantidad" : 1,
+            "fecha" : "2022-04-28",
+            "descripcion" : "Pero wacho como",
+            "condiciones" : "me dejai paentro",
+            "persona" : {"nombre" : "Pepito Rojas", "correo" : "projas@hotmail.com", "numero" : "56943219876"},
+            "foto" : "../assets/img/berenjena.jpg"
+        }
+    ],
+    "pedidos" : [
+        {
+            "direccion" : {"comuna" : {"id": 60105, "nombre": "Rancagua"}, "calle" : "Calle Pelota 433"},
+            "tipo" : "fruta",
+            "descripcion" : "boquita lo mas grande",
+            "cantidad" : 2,
+            "persona" : {"nombre" : "Cristiano Ronaldo", "correo" : "cr7SIIUU@gmail.com", "numero" : "56951111169"}
+        },
+        {
+            "direccion" : {"comuna" : {"id": 130229, "nombre": "Estacion Central"}, "calle" : "Calle Pelota 433"},
+            "tipo" : "otro",
+            "descripcion" : "Musica tito",
+            "cantidad" : 1,
+            "persona" : {"nombre" : "Kike Morande", "correo" : "alokike@yahoo.com", "numero" : "56942042269"}
+        }
+    ]
+}
+'''
